@@ -12,6 +12,12 @@ cp .env.template .env
 
 Assign values to the variables **GOOGLE_KEY_JSON_PATH** and **SPREAD_SHEET_ID**.
 
+### Install dependencies
+
+``` bash
+npm install
+```
+
 ### Run the example
 
 ``` bash
