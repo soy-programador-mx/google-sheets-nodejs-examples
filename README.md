@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-## Spanish tutorial
+## Tutorial
 
 
 
