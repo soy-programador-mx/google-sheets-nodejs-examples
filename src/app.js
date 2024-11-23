@@ -1,29 +1,49 @@
-import { google } from 'googleapis';
-import 'dotenv/config'
-import * as path from 'path'
+import { googleSheets } from "./plugins/googleSheets.plugin.js";
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(import.meta.dirname, "..", process.env.GOOGLE_KEY_JSON_PATH),
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
-
-const service = google.sheets({version: 'v4', auth});
+/**
+ * Read data
+ */
 const spreadsheetId = process.env.SPREAD_SHEET_ID;
-const range = "Hoja 1!A:A";
+const rangeForRead = "Hoja 1!A:A";
+let resultRead;
 
 try {
-
-  /**
-   * Read https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get?hl=es-419
-   */
-  const result = await service.spreadsheets.values.get({
-    spreadsheetId,
-    range,
-  });
-  const numRows = result.data.values ? result.data.values.length : 0;
-  console.log(`${numRows} rows retrieved.`);
-  console.log(result.data.values);
+  resultRead = await googleSheets.read(spreadsheetId, rangeForRead);
+  console.log(resultRead);
 } catch (err) {
   // TODO (developer) - Handle exception
   throw err;
+}
+
+/**
+ * Write data
+ */
+const rangeForWrite = "Hoja 1!B1";
+let resultWrite;
+const data = [
+  [
+    'Email',
+  ],
+  [
+    '1@localhost',
+  ],
+  [
+    '2@localhost',
+  ],
+  [
+    '3@localhost',
+  ],
+  [
+    '4@localhost',
+  ],
+  [
+    '5@localhost',
+  ],
+]
+
+try {
+  resultWrite = await googleSheets.write(spreadsheetId, rangeForWrite, data, 'RAW');
+  console.log(resultWrite.data);
+} catch (error) {
+  throw error;
 }
