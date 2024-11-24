@@ -1,6 +1,6 @@
 # google-sheets-examples
 
-You can learn how to use the Google Sheets API in Node.js!
+Learn how to use the Google Sheets API in Node.js!
 
 ## Usage
 
@@ -26,5 +26,5 @@ npm run dev
 
 ## Tutorial
 
-
+[Google sheets with NodeJS](https://youtu.be/ScT7TOS6Wzo?si=SsXdAWm59MPzIy6o)
 
